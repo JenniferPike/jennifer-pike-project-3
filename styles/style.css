@@ -133,7 +133,7 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   box-sizing: border-box; }
 
 body {
-  background: cadetblue; }
+  background: #2d7c7f; }
 
 img {
   width: 100%; }
@@ -151,7 +151,7 @@ h1 {
 .wrapper {
   width: 700px;
   height: 700px;
-  background: slateblue;
+  background: #0adff0;
   position: relative; }
 
 .game-section {

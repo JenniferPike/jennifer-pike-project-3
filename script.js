@@ -24,18 +24,15 @@
 $(document).ready(function(){
     //CLICK ON BLACK SQUARE TO START GAME
    $('.start-square').on('click', function(){
-          // on click remove the dark start game square leaves empty space
+          // on click remove the "start game" label square leaves empty space
           $('.start-square label').remove();
-          //shuffle tiles so they are in different spots
-
-//     console.log($('.start-square').data('x-coord'), $('.start-square').data('y-coord')) 
    });
 
      //MOVE A SQUARE
      $('.game-tile').on('click', function () {
-     //$('.game-tile') says get me all html with a class game-tile 
-     //and .on('click') says when clicking on one of those html elements do what i've listed below
-          const emptyTile = $('.start-square');
+          //$('.game-tile') says get me all html with a class game-tile 
+          //and .on('click') says when clicking on one of those html elements do what i've listed below
+          const emptyTile = $('.tile-9');
           //any html elements with the class "start-square are put in a variable called "emptyTile"
           const emptyTileImage = emptyTile.find('img');
           // go inside of the "emptyTile" variable and find me an image element
@@ -48,22 +45,96 @@ $(document).ready(function(){
           //go inside of the "thisTile" variable and find me an img element
           const thisTileImageUrl = thisTileImage.attr('src');
           // go get the src attribute from that img HTML element I put in the "thisTileImage" variable
-          emptyTileImage.attr('src', thisTileImageUrl);
-          thisTileImage.attr('src', emptyTileImageUrl);
-          
+          const moveTile = function(){
+               emptyTileImage.attr('src', thisTileImageUrl);
+               thisTileImage.attr('src', emptyTileImageUrl);
+          };
+          //need another way to refer to the blank tile - probably need to change empty tile code
+          //images still moving to square 9 not only to blank square.
+          //image in that square changes now if else doesnt work
+
+
+
+          // I know this is a lot, I talked with Zoe and working on refactoring it.
+
+          // code for square 9 
+          if (thisTileImageUrl === 'assets/blank.JPG') {
+               if ($('.tile-6 img').attr('src') === 'assets/blank.JPG') {
+                    moveTile();
+               } else if ($('.tile-8 img').attr('src') === 'assets/blank.JPG') {
+                    moveTile();
+               } 
+          }
+          if (thisTileImageUrl === 'assets/image-8.JPG'){
+               
+               if ($('.tile-9 img').attr('src') ===  'assets/blank.JPG'){
+                    moveTile();
+               } else if ($('.tile-7').attr('src') === 'assets/blank.JPG') {
+                    moveTile();
+
+               } else if ($('.tile-5').attr('src') === 'assets/blank.JPG'){
+                    moveTile();
+               }     
+          };
+
+          if(thisTileImageUrl === 'assets/image-7.JPG'){
+               if($('.tile-4 img').attr('src') === 'assets/blank.JPG'){
+                    moveTile();
+               }else if ($('.tile-8 img').attr('src') === 'assets/blank.JPG'){
+                    moveTile();
+               }
+          };
+          if(thisTileImageUrl === 'assets/image-6.JPG'){
+               if($('.tile-3 img').attr('src') === 'assets/blank.JPG'){
+                    moveTile();
+               } else if ($('.tile-5 img').attr('src') === 'assets/blank.JPG') {
+                    moveTile();
+               } else if($('.tile-9 img').attr('src') === 'assets/blank.JPG'){
+                    moveTile();
+               }
+          };
+          if(thisTileImageUrl === 'assets/image-5.JPG'){
+               if($('.tile-2 img').attr('src') === 'assets/blank.JPG'){
+                    moveTile();
+               }else if($('.tile-4 img').attr('src') === 'assets/blank.JPG'){
+                    moveTile();
+               }else if ($('.tile-6 img').attr('src') === 'assets/blank.JPG'){
+                    moveTile();
+               }else if($('.tile-8 img').attr('src') === 'assets/blank.JPG'){
+                    moveTile();
+               }
+          };
+          if(thisTileImageUrl === 'assets/image-4.JPG'){
+               if($('.tile-1 img').attr('src') === 'assets/blank.JPG'){
+                    moveTile();
+               }else if ($('.tile-5 img').attr('src') === 'assets/blank.JPG'){
+                    moveTile();
+               }else if($('.tile-7 img').attr('src') === 'assets/blank.JPG'){
+                    moveTile();
+               }
+          };
+          if (thisTileImageUrl === 'assets/image-3.JPG') {
+               if ($('.tile-2 img').attr('src') === 'assets/blank.JPG') {
+                    moveTile();
+               } else if ($('.tile-6 img').attr('src') === 'assets/blank.JPG') {
+                    moveTile();
+               }
+          };
+          if(thisTileImageUrl === 'assets/image-2.JPG'){
+               if($('.tile-1 img').attr('src') === 'assets/blank.JPG'){
+                    moveTile();
+               }else if ($('.tile-3 img').attr('src') === 'assets/blank.JPG'){
+                    moveTile();
+               }else if($('.tile-5 img').attr('src') === 'assets/blank.JPG'){
+                    moveTile();
+               }
+          };
+          if(thisTileImageUrl === 'assets/image-1.JPG'){
+               if($('.tile-2 img').attr('src') === 'assets/blank.JPG'){
+                    moveTile();
+               }else if ($('.tile-4 img').attr('src') === 'assets/blank.JPG'){
+                    moveTile();
+               }
+          };
      });
-
-    //CLICK ON SQUARE
-     //check if there is empty space around square
-     //move to that space
-     //move back if clicked again
 });
-
-
-//I'd like to use a init function later on but will make it without first.
-// myGame.init = function () {
-
-// };
-// $(function () {
-//      myGame.init();
-// });
