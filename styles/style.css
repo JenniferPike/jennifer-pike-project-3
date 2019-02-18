@@ -220,6 +220,13 @@ label {
   left: 0;
   padding: 65px 33px; }
 
+h2 {
+  color: white;
+  font-size: 30px;
+  text-transform: uppercase;
+  margin: 0;
+  text-align: center; }
+
 @media (max-width: 940px) {
   .game-section {
     -webkit-box-orient: vertical;

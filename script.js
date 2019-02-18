@@ -1,5 +1,8 @@
 //SLIDING PUZZLE
 
+//add this to credit is it solveable. Mark Wilkins helped me with this part. Turns out it's possible for a puzzle to be unsolvable. Mark rewrote this into JS from Java to help solve my problem
+//https://gist.github.com/caseyscarborough/6544636
+
 // 1.CLICK ON BLACK SQUARE TO START GAME
 //      ✅- black square will dissappear
 // 2. CLICK ON A PHOTO TO MOVE IT TO THE OPEN SPACE
@@ -62,45 +65,43 @@ const imageOriginSpots =[
 
 
 $(document).ready(function(){
-     //puzzle solved
-     $('.game-tile').on('click', function () {
-          //need to condence this 😐
-          if ($('.tile-1 img').attr('src') === 'assets/image-1.JPG' && $('.tile-2 img').attr('src') === 'assets/image-2.JPG' &&
-               $('.tile-3 img').attr('src') === 'assets/image-3.JPG' &&
-               $('.tile-4 img').attr('src') === 'assets/image-4.JPG' &&
-               $('.tile-5 img').attr('src') === 'assets/image-5.JPG' &&
-               $('.tile-6 img').attr('src') === 'assets/image-6.JPG' &&
-               $('.tile-7 img').attr('src') === 'assets/image-7.JPG' &&
-               $('.tile-8 img').attr('src') === 'assets/image-8.JPG' &&
-               $('.tile-9 img').attr('src') === 'assets/blank.JPG') {
-               console.log('YOU WON!')
-          }
-     });
+
     //CLICK ON BLACK SQUARE TO START GAME
-   $('.tile-9').on('click', function(e){
+    //.one() is the same as on but only does it once not on every click
+   $('.tile-9').one('click', function(e){
         e.preventDefault();
           // on click remove the "start game" label square leaves empty space
           $('.tile-9 label').remove();
-          clone an array
+          //clone an array
           const imageOriginSpotsClone = imageOriginSpots.slice(0);
           //get random number
           function getRandoNum(){
                return randomNumber = Math.floor(Math.random() * (imageOriginSpotsClone.length)); 
           };
           const mixUpTiles = function () { 
+               $('.tile-9').removeClass('empty');
+               //find the empty tile and remove the empty class
                for (let i = 1; i < 10; i++) {
                     //using i as 1 because it will select the tile we need
                     const randomNum = getRandoNum();
                     //gets random number 
                     const getImage = imageOriginSpotsClone[`${randomNum}`].url;
                     //selects that images url from the array
-                    imageOriginSpotsClone.pop(randomNum);
+                    imageOriginSpotsClone.splice(randomNum,1);
                     //pops that number off so as not to repeat the same image
                     $(`.tile-${i}`).empty('img src')
                     $(`.tile-${i}`).append(`<img src=${getImage}>`);
                     //takes the original image off and puts the random image there
+
+                    // if getImage is the blank img url, add the empty class to tile-${i}
+                    if (getImage === "assets/blank.JPG"){
+                         $(`.tile-${i}`).addClass('empty');
+                    }
+                    
                };    
+               
           }; 
+          
           mixUpTiles();
    });
 
@@ -109,7 +110,7 @@ $(document).ready(function(){
           //$('.game-tile') says get me all html with a class game-tile 
           //and .on('click') says when clicking on one of those html elements do what i've listed below
           const emptyTile = $('.empty')
-          //any html elements with the class "start-square are put in a variable called "emptyTile"
+          //any html elements with the class "empty" are put in a variable called "emptyTile"
           const emptyTileImage = emptyTile.find('img');
           // go inside of the "emptyTile" variable and find me an image element
           const emptyTileImageUrl = emptyTileImage.attr('src');
@@ -206,6 +207,22 @@ $(document).ready(function(){
                     moveTile();
                }
           };
+     });
+
+     //PUZZLE SOLVED
+     $('.game-tile').on('click', function () {
+          //need to condence this 😐
+          if ($('.tile-1 img').attr('src') === 'assets/image-1.JPG'&& $('.tile-2 img').attr('src') === 'assets/image-2.JPG' &&
+               $('.tile-3 img').attr('src') === 'assets/image-3.JPG' &&
+               $('.tile-4 img').attr('src') === 'assets/image-4.JPG' &&
+               $('.tile-5 img').attr('src') === 'assets/image-5.JPG' &&
+               $('.tile-6 img').attr('src') === 'assets/image-6.JPG' &&
+               $('.tile-7 img').attr('src') === 'assets/image-7.JPG' &&
+               $('.tile-8 img').attr('src') === 'assets/image-8.JPG' &&
+               $('.tile-9 img').attr('src') === 'assets/blank.JPG') {
+
+               $('.puzzle-goal').append('<h2>YOU WON!</h2>')
+          }
      });
     
 });
