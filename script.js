@@ -64,7 +64,8 @@ const imageOriginSpots =[
 $(document).ready(function(){
 
     //CLICK ON BLACK SQUARE TO START GAME
-   $('.tile-9').on('click', function(){
+   $('.tile-9').on('click', function(e){
+        e.preventDefault();
           // on click remove the "start game" label square leaves empty space
           $('.tile-9 label').remove();
           //clone an array
@@ -74,21 +75,18 @@ $(document).ready(function(){
                return randomNumber = Math.floor(Math.random() * (imageOriginSpotsClone.length)); 
           };
 
-        for (let i = 1; i < 10; i++) {
-          //using i as 1 because it will select the tile we need
-          const randomNum = getRandoNum();
-          const getImage = imageOriginSpotsClone[`${randomNum}`].url;
-          imageOriginSpotsClone.pop(getImage);
-          console.log(getImage);
-          // $(`.tile-${i} img`).append('src', getImage);    
-        };
-          // const mixUpTiles = function(){
-              
+          for (let i = 1; i < 10; i++) {
+               //using i as 1 because it will select the tile we need
+               const randomNum = getRandoNum();
+               const getImage = imageOriginSpotsClone[`${randomNum}`].url;
+               imageOriginSpotsClone.pop(randomNum);
+               $(`.tile-${i}`).empty('img src')
+               $(`.tile-${i}`).append(`<img src=${getImage}>`);    
+          };
+          // const mixUpTiles = function(){ 
+                 
+          // }; 
 
-              
-          // };
-          
-          
           // mixUpTiles();
           // random number get object associated with that number
           // run through 9 times index
