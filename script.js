@@ -115,7 +115,7 @@ $(document).ready(function(){
                const puzzleArr = [];
                // added as part of the is it solvable function
 
-               $('.tile-9').removeClass('empty');
+               $('.game-tile').removeClass('empty');
                //find the empty tile and remove the empty class
                for (let i = 1; i < 10; i++) {
                     //using i as 1 because it will select the tile we need
