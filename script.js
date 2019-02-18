@@ -25,7 +25,8 @@ const imageOriginSpots =[
      {
           url:'assets/image-1.JPG',
           tileClass: '.tile-1',
-          number: 1
+          number: 1 
+          //added  numbers to the objects to do with the solvable thing
      },
      {
           url: 'assets/image-2.JPG',
@@ -112,6 +113,7 @@ $(document).ready(function(){
                };
 
                const puzzleArr = [];
+               // added as part of the is it solvable function
 
                $('.tile-9').removeClass('empty');
                //find the empty tile and remove the empty class
@@ -120,6 +122,7 @@ $(document).ready(function(){
                     const randomNum = getRandoNum();
                     //gets random number 
                     const num = imageOriginSpotsClone[randomNum].number; 
+                    //code to do with solving
                     const getImage = imageOriginSpotsClone[`${randomNum}`].url;
                     //selects that images url from the array
                     imageOriginSpotsClone.splice(randomNum,1);
@@ -133,7 +136,8 @@ $(document).ready(function(){
                          $(`.tile-${i}`).addClass('empty');
                     }
 
-                    puzzleArr[i-1] = num;
+                    puzzleArr.push(num);
+                    //put the number for this image in the array for the tile we're on. More of the code to do with solvable
                     
                };   
 // I left the console.logs in here for now because occasionally this puzzle is not solvable. It will call mixUpTiles again until it is solvable but just in case I left in the log.
