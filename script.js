@@ -21,63 +21,79 @@
 //6. PICK A PHOTO - HAVE MULTIPLE PHOTO OPTIONS
 //7. COUNT MOVES
 //8. TIMER
-const imageOriginSpots = {
-     image1: {
+const imageOriginSpots =[
+     {
           url:'assets/image-1.JPG',
           tileClass: '.tile-1'
      },
-     image2: {
+     {
           url: 'assets/image-2.JPG',
           tileClass: '.tile-2'
      },
-     image3: {
+     {
           url: 'assets/image-3.JPG',
           tileClass: '.tile-3'
      },
-     image4: {
+     {
           url: 'assets/image-4.JPG',
           tileClass: '.tile-4'
      },
-     image5: {
+     {
           url: 'assets/image-5.JPG',
           tileClass: '.tile-5'
      },
-     image6: {
+     {
           url: 'assets/image-6.JPG',
           tileClass: '.tile-6'
      },
-     image7:{
+     {
           url: 'assets/image-7.JPG',
           tileClass: '.tile-7'
      },
-     image8:{
+     {
           url: 'assets/image-8.JPG',
           tileClass: '.tile-8'
      },
-     image9:{
+     {
           url: 'assets/blank.JPG',
           tileClass: '.empty'
-     },
-};
+     }
+];
 
 
 $(document).ready(function(){
-     const endGame = function () {
-          if (`${imageOriginSpots.url} === ${imageOriginSpots.tileClass}`) {
-               console.log(imageOriginSpots.url);
-          }
-     }
 
     //CLICK ON BLACK SQUARE TO START GAME
    $('.tile-9').on('click', function(){
           // on click remove the "start game" label square leaves empty space
           $('.tile-9 label').remove();
-
-          const mixUpTiles = function(){
-               // when tile-9 is clicked
-               //draw a random number for each tile.
-               //move the image to that tile
+          //clone an array
+          const imageOriginSpotsClone = imageOriginSpots.slice(0);
+          //get random number
+          function getRandoNum(){
+               return randomNumber = Math.floor(Math.random() * (imageOriginSpotsClone.length)); 
           };
+
+        for (let i = 1; i < 10; i++) {
+          //using i as 1 because it will select the tile we need
+          const randomNum = getRandoNum();
+          const getImage = imageOriginSpotsClone[`${randomNum}`].url;
+          imageOriginSpotsClone.pop(getImage);
+          console.log(getImage);
+          // $(`.tile-${i} img`).append('src', getImage);    
+        };
+          // const mixUpTiles = function(){
+              
+
+              
+          // };
+          
+          
+          // mixUpTiles();
+          // random number get object associated with that number
+          // run through 9 times index
+          // put on page
+          // .pop that number
    });
 
      //MOVE A SQUARE

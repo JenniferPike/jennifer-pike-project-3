@@ -3,13 +3,11 @@
         height:700px;
         background:#0adff0;
         position: relative;
-        // display:flex;
-        // flex-wrap: wrap;
     }
 
     .game-section{
         display:flex;
-        justify-content:space-evenly 
+        justify-content:space-evenly;
     }
     .puzzle-goal{
         width:20%;
