@@ -1,8 +1,5 @@
 //SLIDING PUZZLE
 
-//add this to credit is it solveable. Mark Wilkins helped me with this part. Turns out it's possible for a puzzle to be unsolvable. Mark rewrote this into JS from Java to help solve my problem
-//https://gist.github.com/caseyscarborough/6544636
-
 // 1.CLICK ON BLACK SQUARE TO START GAME
 //      ✅- black square will dissappear
 // 2. CLICK ON A PHOTO TO MOVE IT TO THE OPEN SPACE
@@ -27,41 +24,73 @@
 const imageOriginSpots =[
      {
           url:'assets/image-1.JPG',
-          tileClass: '.tile-1'
+          tileClass: '.tile-1',
+          number: 1
      },
      {
           url: 'assets/image-2.JPG',
-          tileClass: '.tile-2'
+          tileClass: '.tile-2',
+          number: 2
      },
      {
           url: 'assets/image-3.JPG',
-          tileClass: '.tile-3'
+          tileClass: '.tile-3',
+          number: 3
      },
      {
           url: 'assets/image-4.JPG',
-          tileClass: '.tile-4'
+          tileClass: '.tile-4',
+          number: 4
      },
      {
           url: 'assets/image-5.JPG',
-          tileClass: '.tile-5'
+          tileClass: '.tile-5',
+          number: 5
      },
      {
           url: 'assets/image-6.JPG',
-          tileClass: '.tile-6'
+          tileClass: '.tile-6',
+          number: 6
      },
      {
           url: 'assets/image-7.JPG',
-          tileClass: '.tile-7'
+          tileClass: '.tile-7',
+          number: 7
      },
      {
           url: 'assets/image-8.JPG',
-          tileClass: '.tile-8'
+          tileClass: '.tile-8',
+          number: 8
      },
      {
           url: 'assets/blank.JPG',
-          tileClass: '.empty'
+          tileClass: '.empty',
+          number: 0
      }
 ];
+//this is to credit the is it solveable. Mark Wilkins helped me with this part. Turns out it's possible for a puzzle to be unsolvable. Mark rewrote this into JS from Java to help solve my problem
+// https://gist.github.com/caseyscarborough/6544636
+
+// Puzzle array is an array of all the image numbers from top left, to bottom right in a flat array.
+// 0 represents the blank tile
+// this function will return true if the puzzle is possible to solve, false otherwise
+const isSolveable = function (puzzleArray) {
+     let inversions = 0;
+
+     for (let i = 0; i < puzzleArray.length - 1; i++) {
+          // Check if a larger number exists after the current
+          // place in the array, if so increment inversions.
+          for (let j = i + 1; j < puzzleArray.length; j++)
+               if (puzzleArray[i] > puzzleArray[j]) inversions++;
+
+          // Determine if the distance of the blank space from the bottom 
+          // right is even or odd, and increment inversions if it is odd.
+          if (puzzleArray[i] == 0 && i % 2 == 1) inversions++;
+     }
+
+     // If inversions is even, the puzzle is solvable.
+     return (inversions % 2 == 0);
+}
 
 
 $(document).ready(function(){
@@ -72,19 +101,25 @@ $(document).ready(function(){
         e.preventDefault();
           // on click remove the "start game" label square leaves empty space
           $('.tile-9 label').remove();
-          //clone an array
-          const imageOriginSpotsClone = imageOriginSpots.slice(0);
           //get random number
-          function getRandoNum(){
-               return randomNumber = Math.floor(Math.random() * (imageOriginSpotsClone.length)); 
-          };
+          
           const mixUpTiles = function () { 
+               //clone an array
+               const imageOriginSpotsClone = imageOriginSpots.slice(0);       
+               
+               function getRandoNum() {
+                    return randomNumber = Math.floor(Math.random() * (imageOriginSpotsClone.length));
+               };
+
+               const puzzleArr = [];
+
                $('.tile-9').removeClass('empty');
                //find the empty tile and remove the empty class
                for (let i = 1; i < 10; i++) {
                     //using i as 1 because it will select the tile we need
                     const randomNum = getRandoNum();
                     //gets random number 
+                    const num = imageOriginSpotsClone[randomNum].number; 
                     const getImage = imageOriginSpotsClone[`${randomNum}`].url;
                     //selects that images url from the array
                     imageOriginSpotsClone.splice(randomNum,1);
@@ -97,8 +132,17 @@ $(document).ready(function(){
                     if (getImage === "assets/blank.JPG"){
                          $(`.tile-${i}`).addClass('empty');
                     }
+
+                    puzzleArr[i-1] = num;
                     
-               };    
+               };   
+// I left the console.logs in here for now because occasionally this puzzle is not solvable. It will call mixUpTiles again until it is solvable but just in case I left in the log.
+               if (!isSolveable(puzzleArr)) {
+                    console.log('the puzzle is not solvable!!')
+                    mixUpTiles();
+               } else {
+                    console.log('its solvable! Time to play!')
+               }
                
           }; 
           
@@ -211,7 +255,7 @@ $(document).ready(function(){
 
      //PUZZLE SOLVED
      $('.game-tile').on('click', function () {
-          //need to condence this 😐
+          //need to condence this somehow, somedays😐
           if ($('.tile-1 img').attr('src') === 'assets/image-1.JPG'&& $('.tile-2 img').attr('src') === 'assets/image-2.JPG' &&
                $('.tile-3 img').attr('src') === 'assets/image-3.JPG' &&
                $('.tile-4 img').attr('src') === 'assets/image-4.JPG' &&
