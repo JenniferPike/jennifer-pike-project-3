@@ -62,36 +62,46 @@ const imageOriginSpots =[
 
 
 $(document).ready(function(){
-
+     //puzzle solved
+     $('.game-tile').on('click', function () {
+          //need to condence this 😐
+          if ($('.tile-1 img').attr('src') === 'assets/image-1.JPG' && $('.tile-2 img').attr('src') === 'assets/image-2.JPG' &&
+               $('.tile-3 img').attr('src') === 'assets/image-3.JPG' &&
+               $('.tile-4 img').attr('src') === 'assets/image-4.JPG' &&
+               $('.tile-5 img').attr('src') === 'assets/image-5.JPG' &&
+               $('.tile-6 img').attr('src') === 'assets/image-6.JPG' &&
+               $('.tile-7 img').attr('src') === 'assets/image-7.JPG' &&
+               $('.tile-8 img').attr('src') === 'assets/image-8.JPG' &&
+               $('.tile-9 img').attr('src') === 'assets/blank.JPG') {
+               console.log('YOU WON!')
+          }
+     });
     //CLICK ON BLACK SQUARE TO START GAME
    $('.tile-9').on('click', function(e){
         e.preventDefault();
           // on click remove the "start game" label square leaves empty space
           $('.tile-9 label').remove();
-          //clone an array
+          clone an array
           const imageOriginSpotsClone = imageOriginSpots.slice(0);
           //get random number
           function getRandoNum(){
                return randomNumber = Math.floor(Math.random() * (imageOriginSpotsClone.length)); 
           };
-
-          for (let i = 1; i < 10; i++) {
-               //using i as 1 because it will select the tile we need
-               const randomNum = getRandoNum();
-               const getImage = imageOriginSpotsClone[`${randomNum}`].url;
-               imageOriginSpotsClone.pop(randomNum);
-               $(`.tile-${i}`).empty('img src')
-               $(`.tile-${i}`).append(`<img src=${getImage}>`);    
-          };
-          // const mixUpTiles = function(){ 
-                 
-          // }; 
-
-          // mixUpTiles();
-          // random number get object associated with that number
-          // run through 9 times index
-          // put on page
-          // .pop that number
+          const mixUpTiles = function () { 
+               for (let i = 1; i < 10; i++) {
+                    //using i as 1 because it will select the tile we need
+                    const randomNum = getRandoNum();
+                    //gets random number 
+                    const getImage = imageOriginSpotsClone[`${randomNum}`].url;
+                    //selects that images url from the array
+                    imageOriginSpotsClone.pop(randomNum);
+                    //pops that number off so as not to repeat the same image
+                    $(`.tile-${i}`).empty('img src')
+                    $(`.tile-${i}`).append(`<img src=${getImage}>`);
+                    //takes the original image off and puts the random image there
+               };    
+          }; 
+          mixUpTiles();
    });
 
      //MOVE A SQUARE
@@ -117,7 +127,6 @@ $(document).ready(function(){
                emptyTile.removeClass('empty')
                thisTile.addClass('empty');
           };
-
           // I know this is a lot, I talked with Zoe and working on refactoring it.
           if (thisTile.hasClass('tile-9')) {
               // if the tile clicked has a class of tile-9, then check if tile-6 or tile-8 have a img src attribute of assets/blank.JPG if one does move there.
@@ -198,4 +207,5 @@ $(document).ready(function(){
                }
           };
      });
+    
 });
