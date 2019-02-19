@@ -5,18 +5,18 @@
 // 2. CLICK ON A PHOTO TO MOVE IT TO THE OPEN SPACE
 //     ✅ - photo can move left/right and up/down
 //      ✅- on click of a tile:
-//      - Check if the tile clicked is next to the empty tile
-//      - if it IS next to the empty tile, switch the empty tile and the one you clicked
+//      ✅- Check if the tile clicked is next to the empty tile
+//      ✅- if it IS next to the empty tile, switch the empty tile and the one you clicked
 //      - if its not, do nothing
-// 3. CELEBRATION WHEN COMPLETE
-//      - photos are back in starting spots
-//      - once all are back in those spots display complete or restart?
-//      - check to see if it's back to the start
-//      - if `img-1` was inside`tile-1` and`img-2` is inside`tile-2` then its correct and you win!
-//BONUS!!!!!!!!!
-// 4.PHOTO TILES GET MIXED UP WITH ONE FREE SQUARE
-//      - use a random generator to move the tiles into different spots?
+// 3.PHOTO TILES GET MIXED UP WITH ONE FREE SQUARE
+//     ✅ - use a random generator to move the tiles into different spots?
 //      - else statement so they don't end up in the same square
+// 4. CELEBRATION WHEN COMPLETE
+//     ✅ - photos are back in starting spots
+//      ✅- once all are back in those spots display complete or restart?
+//     ✅ - check to see if it's back to the start
+//      ✅- if `img-1` was inside`tile-1` and`img-2` is inside`tile-2` then its correct and you win!
+//BONUS!!!!!!!!!
 //5. RESTART BUTTON
 //6. PICK A PHOTO - HAVE MULTIPLE PHOTO OPTIONS
 //7. COUNT MOVES
