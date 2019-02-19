@@ -2,9 +2,17 @@
         padding:20px;
     }
     h1{
-        color:white;
+        font-family: 'BioRhyme', serif;
         font-size:50px;
+    }
+    h1, p{
+        color:white;
         text-transform: uppercase;
         margin:0;
         text-align:center;
+    }
+    p{
+        font-family: 'Space Mono', monospace;
+        font-size:22px;
+        display:none;
     }

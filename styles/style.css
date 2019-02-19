@@ -142,11 +142,19 @@ header {
   padding: 20px; }
 
 h1 {
+  font-family: 'BioRhyme', serif;
+  font-size: 50px; }
+
+h1, p {
   color: white;
-  font-size: 50px;
   text-transform: uppercase;
   margin: 0;
   text-align: center; }
+
+p {
+  font-family: 'Space Mono', monospace;
+  font-size: 22px;
+  display: none; }
 
 .wrapper {
   width: 700px;
@@ -220,12 +228,18 @@ label {
   left: 0;
   padding: 65px 33px; }
 
-h2 {
+h2, h3 {
+  font-family: 'BioRhyme', serif;
   color: white;
-  font-size: 30px;
   text-transform: uppercase;
   margin: 0;
   text-align: center; }
+
+h2 {
+  font-size: 30px; }
+
+h3 {
+  font-size: 20px; }
 
 @media (max-width: 940px) {
   .game-section {

@@ -140,12 +140,12 @@ $(document).ready(function(){
                     //put the number for this image in the array for the tile we're on. More of the code to do with solvable
                     
                };   
-// I left the console.logs in here for now because occasionally this puzzle is not solvable. It will call mixUpTiles again until it is solvable but just in case I left in the log.
+//It will call mixUpTiles again until it is solvable.
                if (!isSolveable(puzzleArr)) {
-                    console.log('the puzzle is not solvable!!')
+                    //the puzzle is not solvable!!
                     mixUpTiles();
                } else {
-                    console.log('its solvable! Time to play!')
+                    $('.puzzle-goal').append('<h3>Time to play!</h3>')
                }
                
           }; 
@@ -269,8 +269,12 @@ $(document).ready(function(){
                $('.tile-8 img').attr('src') === 'assets/image-8.JPG' &&
                $('.tile-9 img').attr('src') === 'assets/blank.JPG') {
 
-               $('.puzzle-goal').append('<h2>YOU WON!</h2>')
+               $('.puzzle-goal').append('<h2>YOU WON!</h2>');
           }
      });
+     //This makes the p tag show up a bit later
+     setTimeout(function(){ 
+          $('p').css('display','block');
+     },6000);
     
 });
