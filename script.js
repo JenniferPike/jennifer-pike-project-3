@@ -259,7 +259,7 @@ $(document).ready(function(){
 
      //PUZZLE SOLVED
      $('.game-tile').on('click', function () {
-          //need to condence this somehow, somedays😐
+          //need to condence this somehow, someday😐
           if ($('.tile-1 img').attr('src') === 'assets/image-1.JPG'&& $('.tile-2 img').attr('src') === 'assets/image-2.JPG' &&
                $('.tile-3 img').attr('src') === 'assets/image-3.JPG' &&
                $('.tile-4 img').attr('src') === 'assets/image-4.JPG' &&
